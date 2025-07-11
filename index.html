@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    <title>Bat Ball Stump Game</title>
+    <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+<div class="container">
+    <h1>🏏 Bat Ball Stump Game</h1>
+    <div class="button-group">
+        <button class="btn bat" onclick="showResult('Bat')" >🏏 Bat</button>
+        <button class="btn ball" onclick="showResult('Ball')" >🏐 Ball</button>
+        <button class="btn stump" onclick="showResult('Stump')" >/|\ Stump</button>
+    </div>
+
+    <div class="result-box" id="resultBox">
+        <button id="hideResult" onclick="hideResult()">x</button>
+        <p><strong>You chose:</strong> <span id="playerChoiceResult"></span></p>
+        <p><strong>Computer chose:</strong> <span id="computerChoiceResult"></span></p>
+        <p class="result-text win"><span id="winnerResult"></span></p>
+    </div>
+    <!-- Scoreboard Section -->
+    <div class="scoreboard">
+        <div class="score-row">
+            <span>👱🏻‍♂️ You Win</span>
+            <div class="score-bar">
+                <div class="bar you" style="width: 0%;"></div>
+            </div>
+            <span id="playerScore" class="score-value">0</span>
+        </div>
+
+        <div class="score-row">
+            <span>🖥️ Pc Win</span>
+            <div class="score-bar">
+                <div class="bar computer" style="width: 0%;"></div>
+            </div>
+            <span id="computerScore" class="score-value">0</span>
+        </div>
+
+        <div class="score-row">
+            <span>🙅🏻 Tie</span>
+            <div class="score-bar">
+                <div class="bar tie"  style="width: 0%;"></div>
+            </div>
+            <span id="tieScore" class="score-value">0</span>
+        </div>
+    </div>
+    <div class="reset_game">
+        <button class="btn reset" onclick="resetGame()">🔄 Reset Game</button>
+    </div>
+</div>
+<script src="script.js"></script>
+</body>
+</html>
