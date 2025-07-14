@@ -31,7 +31,7 @@ function showResult(playerChoice) {
     showScore();
 }
 
-let scoreBoard = {
+let scoreBoard = localStorage.getItem('scoreBoard') ? JSON.parse(localStorage.getItem('scoreBoard')) : {
     player: 0,
     computer: 0,
     tie: 0,
@@ -42,9 +42,10 @@ function updateScore(winner) {
         scoreBoard.player++;
     } else if (winner === 'computer' && scoreBoard.computer !== 100) {
         scoreBoard.computer++;
-    } else if (winner === 'tie' && scoreBoard.tie !== 100){
+    } else if (winner === 'tie' && scoreBoard.tie !== 100) {
         scoreBoard.tie++;
     }
+    localStorage.setItem('scoreBoard', JSON.stringify(scoreBoard));
 }
 
 function showScore() {
@@ -57,23 +58,23 @@ function showScore() {
     let tieScoreBar = document.querySelector('.tie');
 
     if (scoreBoard.player !== 100) {
-    playerScoreBar.style.width = scoreBoard.player + '%';
-    playerScore.innerText = scoreBoard.player;
-    } else{
+        playerScoreBar.style.width = scoreBoard.player + '%';
+        playerScore.innerText = scoreBoard.player;
+    } else {
         playerScoreBar.style.width = '100%';
         playerScore.innerText = '100+';
     }
     if (scoreBoard.computer !== 100) {
-    computerScoreBar.style.width = scoreBoard.computer + '%';
-    computerScore.innerText = scoreBoard.computer;
-    }else{
+        computerScoreBar.style.width = scoreBoard.computer + '%';
+        computerScore.innerText = scoreBoard.computer;
+    } else {
         computerScoreBar.style.width = '100%';
         computerScore.innerText = '100+';
     }
-    if (scoreBoard.tie !== 100){
-    tieScoreBar.style.width = scoreBoard.tie + '%';
-    tieScore.innerText = scoreBoard.tie;
-    }else{
+    if (scoreBoard.tie !== 100) {
+        tieScoreBar.style.width = scoreBoard.tie + '%';
+        tieScore.innerText = scoreBoard.tie;
+    } else {
         tieScoreBar.style.width = '100%';
         tieScore.innerText = '100+';
     }
@@ -90,13 +91,18 @@ function hideResult() {
 }
 
 
-function resetGame(){
+function resetGame() {
     let confirmed = confirm('Are you sure you want to reset the game?');
-    if (confirmed){
+    if (confirmed) {
         scoreBoard.player = 0;
         scoreBoard.computer = 0;
         scoreBoard.tie = 0;
         showScore();
         hideResult();
+        localStorage.removeItem('scoreBoard');
     }
+}
+
+window.onload = function () {
+    showScore();
 }
